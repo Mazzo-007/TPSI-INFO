@@ -1,7 +1,6 @@
 package rubrica;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Contatto {
     //------------------------------------------------------------------------------------------------------------------
@@ -10,29 +9,20 @@ public class Contatto {
 
     private String nome, cognome, email, indirizzo, nota;
     private ArrayList<Numero> numeri;
-    private final Scanner sc = new Scanner(System.in);
 
     //------------------------------------------------------------------------------------------------------------------
     //-------------------------------------------------METODI-----------------------------------------------------------
     //------------------------------------------------------------------------------------------------------------------
 
     //COSTRUTTORE
-    public Contatto (String nome, String cognome, ArrayList<Numero> numeri) {
+    public Contatto (String nome, String cognome, Numero numero, String email, String indirizzo, String nota) {
+        numeri = new ArrayList<>(1);
         this.cognome = cognome;
         this.nome = nome;
-        this.numeri = numeri;
-        inizializzaOpzioni();
-    }
-
-    //INIZIALIZZA OPZIONI
-    private void inizializzaOpzioni () {
-        System.out.println("Opzioni aggiuntive (premere invio per saltare opzione)");
-        System.out.print("Inserisci l'indirizzo email: ");
-        email = sc.nextLine();
-        System.out.print("Inserisci l'indirizzo: ");
-        indirizzo = sc.nextLine();
-        System.out.print("Inserisci la nota: ");
-        nota = sc.nextLine();
+        numeri.add(numero);
+        this.email = email;
+        this.indirizzo = indirizzo;
+        this.nota = nota;
     }
 
     //GET & SET
@@ -82,6 +72,20 @@ public class Contatto {
 
     public void setNumeri(ArrayList<Numero> numeri) {
         this.numeri = numeri;
+    }
+
+    //ADD-DELETE NUMERI
+    public void addNumeri (Numero numero) {
+        numeri.add(numero);
+    }
+
+    public Numero deleteNumero (Numero numero) {
+        if (numeri.contains(numero)) {
+            Numero r = numeri.get(numeri.indexOf(numero));
+            numeri.remove(numero);
+            return r;
+        }
+        return null;
     }
 
     //TO STRING

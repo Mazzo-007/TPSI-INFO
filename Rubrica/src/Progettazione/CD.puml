@@ -17,7 +17,8 @@ package rubrica {
         - indirizzo : String
         - nota : String
 
-        - inizializzaOpzioni() : void
+        + addNumeri(numero : Numero) : void
+        + deleteNumero(numero : Numero) : Numero
     }
     class Numero {
         - telefono : String
@@ -25,8 +26,11 @@ package rubrica {
 
         - inizializzaTipo() : void
     }
+    class Tipo {
+        + tipi : String[]
+    }
 }
-
+Numero --> Tipo
 Numero "1..*" --* "1" Contatto
 Contatto "1..*" --* "1" Rubrica
 @enduml
