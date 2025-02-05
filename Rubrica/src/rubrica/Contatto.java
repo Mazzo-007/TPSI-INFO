@@ -80,7 +80,7 @@ public class Contatto {
     }
 
     public Numero deleteNumero (Numero numero) {
-        if (numeri.contains(numero)) {
+        if (numeri.contains(numero) && numeri.size() > 1) {
             Numero r = numeri.get(numeri.indexOf(numero));
             numeri.remove(numero);
             return r;

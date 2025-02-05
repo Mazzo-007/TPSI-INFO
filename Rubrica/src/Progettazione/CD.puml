@@ -6,7 +6,7 @@ package rubrica {
         + aggiungiContatto() : boolean
         + cancellaContatto() : Contatto
         + modificaContatto() : Contatto
-        + cercaContatto() : ArrayList<Contatto>
+        + cercaContatto(ricerca : String, tipoRicerca : boolean) : ArrayList<Contatto>
         - ordina() : void
     }
     class Contatto {
