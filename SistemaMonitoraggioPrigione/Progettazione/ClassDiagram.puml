@@ -1,0 +1,61 @@
+@startuml
+
+class Prigione {
+    - nome : String
+    - indirizo : String
+    - sistemi : SistemaMonitoraggio[]
+
+    + aggiungiSistema(sistema : SistemaMonitoraggio) : void
+    + rimuoviSistema(sistema : SistemaMonitoraggio) : void
+}
+
+abstract class SistemaMonitoraggio {
+    - id : int
+    - nome : String
+    - sensori : Sensore[]
+
+    + {abstract} calcoloStatistiche() : void
+    + aggiungiSensore() : void
+    + rimuoviSensore() : void
+}
+
+abstract class Sensore {
+    - id : int
+    'Stato è int poichè presenta più di due valori
+    - stato : int
+
+    + {abstract} eseguiDiagnostica() : void
+    + {abstract} accendi() : void
+    + {abstract} spegni() : void
+}
+
+class SensoreTemperatura {
+    + eseguiDiagnostica() : void
+    + accendi() : void
+    + spegni() : void
+}
+
+class SesnsoreMovimento {
+    + eseguiDiagnostica() : void
+    + accendi() : void
+    + spegni() : void
+}
+
+class SistemaTemperatura {
+    + calcoloStatistiche() : void
+}
+
+class SistemaMovimento {
+    + calcoloStatistiche() : void
+}
+
+SistemaMonitoraggio <|-- SistemaTemperatura
+SistemaMonitoraggio <|-- SistemaMovimento
+
+Sensore <|-- SensoreTemperatura
+Sensore <|-- SesnsoreMovimento
+
+SistemaMonitoraggio "1" o-- "2..*" Sensore
+Prigione "1" *-- "*" SistemaMonitoraggio
+
+@enduml
