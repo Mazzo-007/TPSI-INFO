@@ -1,0 +1,12 @@
+@startuml
+    [*] --> Attesa
+
+    Attesa --> CreditoInserito : Inserimento monete sufficienti
+
+    CreditoInserito --> Erogazione : Selezione bevanda
+
+    Erogazione --> Attesa : Erogazione bevanda [nessun resto]
+    Erogazione --> RilascioResto : Erogazione bevanda [resto]
+
+    RilascioResto --> Attesa
+@enduml

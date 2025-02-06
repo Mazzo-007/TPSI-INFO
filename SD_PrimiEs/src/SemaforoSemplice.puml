@@ -1,0 +1,9 @@
+@startuml
+    [*] --> Rosso
+
+    Rosso --> Giallo : tempo
+
+    Giallo --> Verde : tempo
+
+    Verde --> Rosso : tempo
+@enduml
