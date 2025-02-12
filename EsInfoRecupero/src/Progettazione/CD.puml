@@ -1,0 +1,43 @@
+@startuml
+package RivenditaVeicoli {
+    class Rivendita {
+        - nome : String
+        - listaVeicoli : Veicolo
+
+        + add(v : Veicolo) : boolean
+        + read() : String
+        + read(index : int) : String
+    }
+
+    abstract class Veicolo {
+        - marca : String
+        - modello : String
+        - anno : int
+
+        + {abstract} descrivi() : String
+    }
+
+    class Auto {
+        - numeroPorte : int
+
+        + descrivi() : String
+    }
+
+    class Moto {
+        - sideCar : boolean
+
+        + descrivi() : String
+    }
+}
+
+package main {
+    class Main {}
+}
+
+Auto --|> Veicolo
+Moto --|> Veicolo
+
+Veicolo "1..*" --o "1" Rivendita
+
+Main ---> Rivendita : "Istanzia"
+@enduml
