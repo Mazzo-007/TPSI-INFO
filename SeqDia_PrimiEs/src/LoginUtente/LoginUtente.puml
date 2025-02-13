@@ -1,0 +1,11 @@
+@startuml
+    Utente -> Pagina_Login : Inserisce credenziali
+    Pagina_Login -> Auth_Server : Invia credenziali per verifica
+    Auth_Server --> Pagina_Login : Risultato verifica
+
+    alt Credenziali corrette
+        Pagina_Login --> Utente : Mostra dashboard
+    else Credenziali errate
+        Pagina_Login --> Utente : Mostra messaggio di errore
+    end
+@enduml

@@ -1,0 +1,14 @@
+@startuml
+    Utente -> ECommerce : Seleziona prodotto
+    Utente -> ECommerce : Aggiunge al carrello
+    Utente -> ECommerce : Checkout
+    Utente -> ECommerce : Dettagli pagamento
+    ECommerce -> Sistema : Verifica pagamento
+    Sistema --> ECommerce : Esito verifica
+
+    alt Pagamento a buon fine
+        ECommerce --> Utente : Conferma ordine
+    else Pagamento fallisce
+        ECommerce --> Utente : Errore
+    end
+@enduml

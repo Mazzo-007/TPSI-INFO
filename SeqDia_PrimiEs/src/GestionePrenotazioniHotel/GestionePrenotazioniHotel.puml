@@ -1,0 +1,21 @@
+@startuml
+    Utente -> SitoWeb : Ricerca camera
+    Utente -> SitoWeb : Seleziona camera
+    SitoWeb -> Database : Camera selezionata per verifica
+    Database --> SitoWeb : Esito verifica
+
+    alt Camera disponibile
+        SitoWeb --> Utente : Esito positivo richiesta camera
+        Utente -> SitoWeb : Conferma prenotazione
+        Utente -> SitoWeb : Dati pagamento
+        SitoWeb -> Sistema : Verifica pagamento
+        Sistema --> SitoWeb : Esito verifica
+        alt Pagamento a buon fine
+            SitoWeb --> Utente : Conferma ordine
+        else Pagamento fallisce
+            SitoWeb --> Utente : Errore
+        end
+    else Camera non disponibile
+        SitoWeb --> Utente : Errore disponibilità
+    end
+@enduml
