@@ -1,0 +1,53 @@
+@startuml
+    :Consigliere della città: as CC
+    :Capo consigliere: as HeadC
+
+    :Centro operativo di sicurezza: as COS
+    :Sistema di intelligence: as SI
+    :Sindaco: as S
+
+    :Ministero dell'innovazione tecnologica: as MIT
+    :Direttore tecnico: as DT
+
+    (Inviare comunicazioni di emergenza) as UC1
+    (Convocare riunioni del consiglio) as UC2
+
+    (Convocare riunioni con sindaco) as UC3
+    (Rilascio autorizzazione) as RA
+
+    (Monitora città in tempo reale) as UC4
+    (Attiva protocollo di difesa) as UC5
+    (Conferma) as UC6
+    usecase UC7 as "
+        Dichiara stato di emergenza
+        --
+        Se autorizza il sindaco
+    "
+
+    (Gestire le squadre di manutenzione) as UC8
+    (Aggiorna software) as UC9
+
+    (Autorizzare modifiche) as UC10
+
+    CC -- UC1
+    CC -- UC2
+
+    HeadC --|> CC
+
+    HeadC --> UC3
+    UC3 ..> RA : <<include>>
+    S -- UC3
+
+    COS -- UC4
+    COS --> UC5
+    SI -- UC5
+    UC5 ..> UC6 : <<include>>
+    COS -- UC7
+    S -- UC7
+
+    MIT -- UC8
+    MIT -- UC9
+
+    DT -- UC10
+
+@enduml
