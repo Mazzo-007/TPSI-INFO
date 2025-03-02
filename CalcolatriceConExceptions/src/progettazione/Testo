@@ -1,0 +1,9 @@
+Scrivere un programma in Java che simula una calcolatrice e salva tutte le operazioni che l'utente richiede.
+
+Architettura del software:
+    interfaccia Calcolatrice
+    classe CalcolatriceConcreta che implementa l'interfaccia
+    main: creare un oggetto di tipo Calcoltrice e salvare in un ArrayList tutte i calcoli fatti e le eccezione generate
+    (utilizzare una stringa)
+
+Approfondimento: creare l'oggetto calcolatrice utilizzando una classe anonima.

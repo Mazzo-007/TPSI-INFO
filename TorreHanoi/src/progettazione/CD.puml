@@ -1,22 +1,23 @@
 @startuml
-package torreHanoi{
+package torreHanoi {
 
-    abstract class Pila{
+    class Pila {
         - Arraylist<> pila : T
-        + {abstract}push(T elemento) : void
-        + {abstract}pop() : T
+        + push(T element) : void
+        + pop() : T
         + top() : T
         + isEmpty() : boolean
         + size() : int
     }
 
-    class Colonna{
+    class Colonna {
         - nomeColonna: String
         - dimensione: int
-        - inizializzaDischi() : void
-        + push(T elemento)) : void
+        - inizializzaDischi(startDim : int) : void
+        + push(T element) : void
+        + pop() : T
     }
-    class Disco{
+    class Disco {
         - dimensione : int
     }
 
@@ -24,20 +25,26 @@ package torreHanoi{
 
     }
 
-    Class Exception{
+    Class Exception {
+    }
+
+    Class Torri {
+
     }
 }
 
-package Main{
-    class main{
+package Main {
+    class main {
     }
 }
 
-Colonna --> main : Istanzia
+Colonna ---> main : Istanzia
 
 WrongDimensionException --> Exception
 Colonna -- WrongDimensionException
 
-Colonna --> Pila : <extends>
-Disco ..o Colonna
+Colonna -left-> Pila : <extends>
+Disco "0..*  " ..o "1  " Colonna
+
+Colonna "3" .right.o "1" Torri
 @enduml

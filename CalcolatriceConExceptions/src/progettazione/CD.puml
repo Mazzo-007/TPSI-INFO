@@ -1,0 +1,41 @@
+@startuml
+    package calcolatrice {
+        interface Calcolatrice {
+            + {abstract} somma(a : double, b : double) : double
+            + {abstract} sottrazione(a : double, b : double) : double
+            + {abstract} moltiplicazione(a : double, b : double) : double
+            + {abstract} divisione(a : double, b : double) : double
+        }
+
+        class CalcolatriceConcreta {
+            - risultato : double
+            - operazione : String
+            - log : ArrayList<String>
+            + somma(a : double, b : double) : double
+            + sottrazione(a : double, b : double) : double
+            + moltiplicazione(a : double, b : double) : double
+            + divisione(a : double, b : double) : double
+            - aggiornaLog(operazione : String, e : Exception) : void
+        }
+
+        exception ArithmeticException {}
+    }
+
+    package main {
+        class Main {
+            + sc : Scanner
+            + calcolatrice : CalcolatriceConcreta
+        }
+
+        exception InputMismatchException {}
+    }
+
+    ArithmeticException --|> Exception
+    InputMismatchException --|> Exception
+
+    CalcolatriceConcreta -left-|> Calcolatrice
+    CalcolatriceConcreta -- ArithmeticException
+    Main -- InputMismatchException
+
+    main -right-> CalcolatriceConcreta : istanzia
+@enduml
