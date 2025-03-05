@@ -1,0 +1,44 @@
+@startuml
+    package arrayQueue {
+        class ArrayQueue <T> {
+            - queue : ArrayList <T>
+            + push(e : T) : void
+            + pop() : T
+            + top() : T
+            + isEmpty() : boolean
+            + size() : int
+        }
+    }
+
+    package priorityManager {
+        class Paziente {
+            - nome : String
+            - cognome : String
+            - priorityLevel : int
+            - priorityColor : String
+            - setPriorityColor() : void
+        }
+
+        class coda <T> {
+            - nomeCoda : String
+        }
+
+        class PriorityManager {
+            - code : coda[]
+            + aggiungiPaziente(p : Paziente) : void
+            + stampaCoda(index : int) : String
+        }
+    }
+
+    package main {
+        class Main
+    }
+
+    coda -left-|> ArrayQueue
+
+    PriorityManager "1  " --o "3 " coda
+    coda "1" -right-* "0..*   " Paziente
+
+    Paziente -right-> Main : istanzia
+    PriorityManager --> Main : istanzia
+@enduml
