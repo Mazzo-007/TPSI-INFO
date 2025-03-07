@@ -26,4 +26,11 @@ public class PriorityManager {
     }
 
     //STAMPA CODA
+    public String stampaCoda (int index) {
+        try {
+            return code[index].toString();
+        } catch (NullPointerException e) {
+            return "Indice di coda inesistente";
+        }
+    }
 }

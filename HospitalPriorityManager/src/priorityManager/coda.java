@@ -26,10 +26,17 @@ public class coda <T> extends ArrayQueue <T> {
     //TO STRING
     @Override
     public String toString() {
-        String r = "Coda per pazienti: " + nomeCoda + "Pazienti:";
+        Paziente appogio;
+        String r = "Coda per pazienti con livello priorità " + nomeCoda + "\n  Pazienti:";
 
         for (int i = 0; i < super.size(); i++) {
+            r += "\n  " + (i+1) + ". ";
 
+            appogio = (Paziente) super.pop();
+
+            r += appogio;
+
+            super.push((T) appogio);
         }
 
         return r;

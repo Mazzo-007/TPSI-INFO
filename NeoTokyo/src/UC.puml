@@ -15,19 +15,22 @@
     (Convocare riunioni con sindaco) as UC3
     (Rilascio autorizzazione) as RA
 
-    (Monitora città in tempo reale) as UC4
+    usecase UC4 as "
+        Monitora città in tempo reale
+        --
+        E.P.:
+         - Minaccia rilevata
+    "
     (Attiva protocollo di difesa) as UC5
     (Conferma) as UC6
-    usecase UC7 as "
-        Dichiara stato di emergenza
-        --
-        Se autorizza il sindaco
-    "
+    (Dichiara stato di emmergenza) as UC7
+    (Autorizzazione del sindaco) as UC8
 
-    (Gestire le squadre di manutenzione) as UC8
-    (Aggiorna software) as UC9
+    (Gestire le squadre di manutenzione) as UC9
+    (Aggiorna software) as UC10
+    (Tracciamento operazioni) as UC11
 
-    (Autorizzare modifiche) as UC10
+    (Autorizzare modifiche) as UC12
 
     CC -- UC1
     CC -- UC2
@@ -39,15 +42,19 @@
     S -- UC3
 
     COS -- UC4
-    COS --> UC5
-    SI -- UC5
+    UC5 .up.> UC4 : <<extend>>
+    SI -- UC4
     UC5 ..> UC6 : <<include>>
-    COS -- UC7
-    S -- UC7
+    COS --> UC7
+    UC7 ..> UC8 : <<include>>
+    S -- UC8
 
-    MIT -- UC8
     MIT -- UC9
+    MIT -- UC10
+    UC9 ..> UC11 : <<include>>
+    UC10 ..> UC11 : <<include>>
 
-    DT -- UC10
+    DT --|> MIT
+    DT -- UC12
 
 @enduml
