@@ -1,0 +1,121 @@
+@startuml
+    :Giocatore: as player
+    :Mercato: as market
+    :Banca: as bank
+    :Sistema di punteggio: as pointSys
+    :Industria: as industry
+    :Rete di trasporto: as transportNet
+    :Governatore: as ruler
+
+    'Use case di giocatore
+        'Costruzione industria
+        usecase industryBuild as "
+            Costruire industrie
+            ---
+            E.P.:
+            - requisiti soddisfatti
+        "
+        (Selezionare stabilimento) as establishmentSelection
+        (Pagare risorse) as resourchePay
+        (Bonus di produzione) as prodBonus
+
+        'Sviluppare collegamento
+        (Sviluppare collegamento) as newPath
+        (Verifica materiali) as materialCheck
+
+        'Vendita cotone
+        usecase marketCheck as "
+            Controllare mercato
+            ---
+            E.P.:
+            - mercato estero aperto
+            - domanda di cotone
+        "
+        (Vendere cotone) as cottonSell
+        (Bonus vendite) as sellBonus
+
+        'Acquisto risorse
+        (Acquistare risorse) as resourcheBuy
+        usecase sourceSelection as "
+            Scegliere fonte
+            ---
+            E.P.:
+            - possedimenti di miniere
+        "
+        (Costo ridotto su propria produzione) as reducedOwnCost
+
+        (Richiedere prestito) as loanReq
+
+        (Guadagnare introiti) as earnMoney
+
+        (Calcolo punteggio) as pointCalc
+
+    'Usa case di mercato
+    (Regolare disponibilità risorse) as resourseAvailability
+    (Regolare prezzo risorse) as manageResPrice
+
+    'Use case di banca
+    (Fornire prestiti) as loan
+    (Ridurre introiti futuri) as lessMoney
+
+    'Use case di sistema di punteggio
+    (Assegnare punti) as pointAssignement
+
+    'Use case di industria
+
+
+    'Use case di rete di trasporto
+    (Scambio di merci) as merchExachange
+
+    'Use case di governatore
+    (Modificare mercato) as marketMod
+
+    'Collegamenti
+        'Costruzione industria
+        player --> industryBuild
+        industryBuild ..> establishmentSelection : <<include>>
+        industryBuild ..> resourchePay : <<include>>
+        industryBuild <.. prodBonus : <<extend>>
+        industry -- industryBuild
+
+        'Sviluppo collegamento
+        player --> newPath
+        newPath ..> materialCheck : <<include>>
+        transportNet -- newPath
+
+        'Vendita cotone
+        player --> marketCheck
+        marketCheck <.. sellBonus : <<extend>>
+        marketCheck <.. cottonSell : <<extend>>
+        market -- marketCheck
+
+        'Modifica mercato
+        ruler --> marketMod
+        market -- marketMod
+
+        'Acquisto risorse
+        player --> resourcheBuy
+        resourcheBuy ..> sourceSelection : <<include>>
+        sourceSelection <.. reducedOwnCost : <<extend>>
+        market -- resourcheBuy
+        industry -- resourcheBuy
+
+        'Prestiti
+        bank -- loan
+        loan ..> lessMoney : <<include>>
+        player --> loanReq
+        bank -- loanReq
+
+        'Guadagno introiti
+        player -- earnMoney
+
+        'Calcolo punteggio
+        player --> pointCalc
+        pointSys -- pointCalc
+        pointSys -- pointAssignement
+
+        market -- resourseAvailability
+        market -- manageResPrice
+
+        transportNet -- merchExachange
+@enduml
