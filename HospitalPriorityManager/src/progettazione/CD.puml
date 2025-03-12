@@ -27,6 +27,7 @@
             - code : coda[]
             + aggiungiPaziente(p : Paziente) : void
             + stampaCoda(index : int) : String
+            + eseguiTrattamento() : String
         }
     }
 

@@ -58,7 +58,7 @@ public class Main {
         System.out.print("Inserisci il cognome del paziente: ");
         cognomePaziente = sc.next();
 
-        gestore.aggiungiPaziente(new Paziente(nomePaziente, cognomePaziente, selettoreCoda-1));
+        gestore.aggiungiPaziente(new Paziente(nomePaziente, cognomePaziente, selettoreCoda));
     }
 
     public static void main(String[] args) {
@@ -68,7 +68,7 @@ public class Main {
         do {
             do {
                 System.out.println("GESTORE PRIORITA' OSPEDALIERE:");
-                System.out.println("Opzioni:\n  1. Stampa coda\n  2. Aggiungi paziente\n  3. chiudi");
+                System.out.println("Opzioni:\n  1. Stampa coda\n  2. Aggiungi paziente\n  3. Effettua trattamento\n  4. Chiudi");
                 System.out.print("Seleziona: ");
                 try {
                     errorChecker = false;
@@ -82,11 +82,12 @@ public class Main {
             switch (selettore) {
                 case 1 -> stampaCodaOspedaliera();
                 case 2 -> aggiugniPazienteCoda();
-                case 3 -> {
+                case 3 -> System.out.println(gestore.eseguiTrattamento());
+                case 4 -> {
                     System.out.println("Chiusura programma");
                     menu = false;
                 }
-                default -> System.out.println("L'input deve essere compreso tra 1 e 3");
+                default -> System.out.println("L'input deve essere compreso tra 1 e 4");
             }
         } while (menu);
     }

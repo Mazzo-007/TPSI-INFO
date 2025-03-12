@@ -33,4 +33,14 @@ public class PriorityManager {
             return "Indice di coda inesistente";
         }
     }
+
+    //ESEGUI TRATTAMENTO
+    public String eseguiTrattamento () {
+        for (int i = 2; i >= 0; i--) {
+            if (!code[i].isEmpty()) {
+                return "E' stato trattato nella coda livello " + code[i].getNomeCoda() + " il paziente: " + code[i].pop();
+            }
+        }
+        return "Nessun paziente presente";
+    }
 }
