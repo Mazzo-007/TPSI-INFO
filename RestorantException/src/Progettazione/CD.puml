@@ -1,0 +1,33 @@
+@startuml
+    package ristorante {
+        class Piatto {
+            - nome : String
+            - nIngredianti : int
+            - tempoPreparazione : long
+        }
+
+        class Ristorante {
+            - nIngredienti : int
+            - menu : ArrayList<Piatto>
+            - nomeRist : String
+            + simula () : void
+        }
+    }
+
+    class Java.Lang.Exception {}
+
+    package eccezioni {
+        Exception BlackoutException
+
+        Exception NoIngredientException
+
+        Exception RifornimentoException
+    }
+
+    BlackoutException -up-|> Java.Lang.Exception
+    NoIngredientException -up-|> Java.Lang.Exception
+    RifornimentoException -up-|> Java.Lang.Exception
+
+   Piatto "1..*" -down-o "1" Ristorante
+   Ristorante .down.> Exception
+@enduml
