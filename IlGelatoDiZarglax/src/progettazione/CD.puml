@@ -1,0 +1,43 @@
+@startuml
+
+
+    package Glax9 {
+        package distributor {
+            class DistributoreGalattico {
+                - altezza : int
+                - flavorIndex : int
+                - temperatura : int
+                - statoQuiete : int
+
+                + simula () : void
+            }
+        }
+
+        package distributorException {
+            exception GelatoOverloadException
+            exception CosmicSugarStormException
+            exception ThermodynamicViolationException
+            exception RebellionException
+            exception WarException
+        }
+    }
+
+    package main {
+        class Main
+    }
+
+    class Java.Lang.Exception {}
+    Main --> DistributoreGalattico : istanzia
+
+    DistributoreGalattico -- GelatoOverloadException
+    DistributoreGalattico -- CosmicSugarStormException
+    DistributoreGalattico -- ThermodynamicViolationException
+    DistributoreGalattico -- RebellionException
+    DistributoreGalattico -- WarException
+
+    GelatoOverloadException --|> Java.Lang.Exception
+    CosmicSugarStormException --|> Java.Lang.Exception
+    ThermodynamicViolationException --|> Java.Lang.Exception
+    RebellionException --|> Java.Lang.Exception
+    WarException --|> Java.Lang.Exception
+@enduml
