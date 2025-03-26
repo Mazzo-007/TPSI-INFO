@@ -3,8 +3,8 @@ package mian;
 import wordCounter.WordCounter;
 
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
@@ -16,11 +16,12 @@ public class Main {
         text = sc.nextLine();
 
         HashMap<String, Integer> risultato = wc.textCount(text);
+        Set<String> keys = risultato.keySet();
 
         System.out.println("\nTABELLA DELLE ITERAZIONI:");
 
-        for (Map.Entry<String, Integer> entry : risultato.entrySet()) {
-            System.out.println(entry.getKey() + ": " + entry.getValue());
+        for (String key : keys) {
+            System.out.println(key + ": " + risultato.get(key));
         }
     }
 }
