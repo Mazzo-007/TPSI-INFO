@@ -1,0 +1,5 @@
+Utilizzare una HashMap per contare quante volte ciascuna parola appare in un testo fornito.
+
+Ogni parola sarà la chiave e il suo valore il numero di occorrenze.
+
+Nel main chiedere all'utente di inserire il testo.
