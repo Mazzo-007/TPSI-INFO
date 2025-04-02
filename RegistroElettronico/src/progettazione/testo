@@ -1,0 +1,7 @@
+Realizzare un programma in Java che simula un registro elettronico.
+Il programma deve permettere di registrare e gestire studenti, i loro dati anagrafici e i voti scolastici.
+Gli studenti saranno memorizzati in una HashMap in cui la chiave è il codice di matricola, mentre il valore è un oggetto
+Studente.
+Lo Studente è caratterizzato dall'oggetto Anagrafica e la sua lista di Voti.
+Anagrafica contiene nome, cognome, email, telefono(opzionele) e il codice di matricola.
+Il Voto è caratterizzato dalla data, il tipo(S/O/P) e il valore.

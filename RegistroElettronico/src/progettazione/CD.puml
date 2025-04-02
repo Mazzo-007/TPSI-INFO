@@ -1,0 +1,40 @@
+@startuml
+    package registroElettronico {
+        class RegistroElettronico {
+            - registro : HashMap<String, Studente>
+            + recuperaStudente(matricola : void) : Studente
+            + aggiungiStudente(studente : Studente) : boolean
+            + generaNuovaMatricola() : String
+        }
+
+        class Studente {
+            - anagrafica : Anagrafica
+            - listaVoti : ArrayList<Voto>
+            + aggiugniVoto(voto : Voto) : void
+        }
+
+        class Anagrafica {
+            - nome : String
+            - cognome : String
+            - telefono : String
+            - email : String
+            - matricola : String
+        }
+
+        class Voto {
+            - data : String
+            - tipo : char
+            - valore : double
+        }
+    }
+
+    package main {
+        class Main{}
+    }
+
+    Studente "1..*" -up-* "1" RegistroElettronico
+    Studente "1  " --> "1" Anagrafica
+    Studente "1" *-- "0..*  " Voto
+
+    main -left-> RegistroElettronico : istanzia
+@enduml
