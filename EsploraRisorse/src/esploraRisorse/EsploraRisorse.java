@@ -70,20 +70,18 @@ public class EsploraRisorse {
     }
 
     //CREATE DIR
-    public boolean createDir() {
-        if(!directory.exists()){
-            if(directory.mkdir()){
-                System.out.println("Directory created: "+directoryPath);
+    public boolean createDir(String nome) {
+        File tmp = new File(directoryPath, nome);
+        if(!tmp.exists()){
+            if(tmp.mkdir()){
+                System.out.println("Directory created: " + tmp.getAbsolutePath());
                 return true;
-            } else {
-                System.out.println("Can not create the directory");
-                return false;
             }
-
-        }else{
-            System.out.println("Directory already exists");
+            System.out.println("Can not create the directory");
             return false;
         }
+        System.out.println("Directory already exists");
+        return false;
     }
 
     //DELATE FILE DIRECTORY
@@ -111,5 +109,10 @@ public class EsploraRisorse {
         }
 
         System.out.println("The file or the directory is not accessible or does not exist");
+    }
+
+    //GET
+    public String getDirectoryPath() {
+        return directoryPath;
     }
 }
