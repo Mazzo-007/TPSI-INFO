@@ -1,0 +1,20 @@
+@startuml
+    package esploraRisorse{
+        class EsploraRisorse{
+            - file : File
+            - diretoryPath : String
+            + stampaContenuto() : void
+            + joinDir(String nome) : boolean
+            + backDir() : boolean
+            + createFile(file : File) : boolean
+            + createDir() : boolean
+            + deleteFileDir(String nome) : boolean
+            + showFileInfo(String nome) : void
+        }
+    }
+
+    package java.io.File{
+    }
+
+    EsploraRisorse --> java.io.File
+@enduml
