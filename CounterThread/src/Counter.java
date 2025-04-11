@@ -7,6 +7,14 @@ public class Counter {
         value += amount;
     }
 
+    public void mult (double amount) {
+        value *= amount;
+    }
+
+    public void sub (double amount) {
+        value -= amount;
+    }
+
     public double getValue () {
         return value;
     }
