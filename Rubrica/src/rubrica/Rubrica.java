@@ -18,6 +18,11 @@ public class Rubrica {
         contatti = new ArrayList<>(1);
     }
 
+    //GET CONTATTI
+    public ArrayList<Contatto> getContatti() {
+        return contatti;
+    }
+
     //AGGIUNGI CONTATTO
     public boolean aggiungiContatto (Contatto contatto) {
         contatti.add(contatto);
@@ -97,18 +102,18 @@ public class Rubrica {
     }
 
     //ORDINA
-    private void ordina () {
+    private void ordina() {
         Contatto appoggio;
-        for (int i = 0; i < contatti.size(); i++) {
-            if (contatti.get(i).getCognome().compareTo(contatti.get(i+1).getCognome()) > 0) {
+        for (int i = 0; i < contatti.size() - 1; i++) {
+            if (contatti.get(i).getCognome().compareTo(contatti.get(i + 1).getCognome()) > 0) {
                 appoggio = contatti.get(i);
-                contatti.set(i, contatti.get(i+1));
-                contatti.set(i+1, appoggio);
-            } else if (contatti.get(i).getCognome().compareTo(contatti.get(i+1).getCognome()) == 0) {
-                if (contatti.get(i).getNome().compareTo(contatti.get(i+1).getNome()) > 0) {
+                contatti.set(i, contatti.get(i + 1));
+                contatti.set(i + 1, appoggio);
+            } else if (contatti.get(i).getCognome().compareTo(contatti.get(i + 1).getCognome()) == 0) {
+                if (contatti.get(i).getNome().compareTo(contatti.get(i + 1).getNome()) > 0) {
                     appoggio = contatti.get(i);
-                    contatti.set(i, contatti.get(i+1));
-                    contatti.set(i+1, appoggio);
+                    contatti.set(i, contatti.get(i + 1));
+                    contatti.set(i + 1, appoggio);
                 }
             }
         }
