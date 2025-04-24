@@ -1,0 +1,8 @@
+
+RUBRICA 2.0
+
+Indicazioni rubrica:
+
+    - Salvare i contatti in file di testo.
+    - Leggere i contatti dai file di testo salvati.
+    - Utilizzare una HashMap per rendere la ricerca dei contatti più veloce.

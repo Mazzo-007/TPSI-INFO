@@ -1,5 +1,7 @@
 package rubrica;
 
+import rubrica.contatto.Contatto;
+
 import java.util.ArrayList;
 import java.util.List;
 
