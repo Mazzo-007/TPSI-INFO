@@ -31,11 +31,7 @@ public class Rubrica {
         String setupRes;
         String[] setup;
 
-        try {
-            resourcesPath = new File(getClass().getClassLoader().getResource("setup.txt").toURI());
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
-        }
+        resourcesPath = new File("src/resources/setup.txt");
 
         setupRes = fileEditor.read(resourcesPath);
 
@@ -63,21 +59,6 @@ public class Rubrica {
     private void firstUse () {
         autoInc = 0;
 
-        // Copia il file "setup.txt" dalla risorsa alla cartella di salvataggio
-        File destFile = new File(SavingDir, "setup.txt");
-        if (!destFile.exists()) {
-            try (InputStream in = getClass().getClassLoader().getResourceAsStream("setup.txt");
-                 OutputStream out = new FileOutputStream(destFile)) {
-                byte[] buffer = new byte[1024];
-                int length;
-                while ((length = in.read(buffer)) > 0) {
-                    out.write(buffer, 0, length);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
         // Chiedi all'utente dove salvare i contatti
         do {
             System.out.print("Inserisci il percorso assoluto della cartella dove salvare i tuoi contatti: ");
@@ -86,7 +67,7 @@ public class Rubrica {
 
         // Scrivi i dati nel file setup.txt
         String contenuto = "Saving dir: " + SavingDir + "\nAutInc value: " + autoInc;
-        fileEditor.write(destFile, contenuto);
+        fileEditor.write(resourcesPath, contenuto);
     }
 
     //GET & SET

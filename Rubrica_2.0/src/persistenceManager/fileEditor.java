@@ -9,7 +9,6 @@ public class fileEditor {
             BufferedWriter bw = new BufferedWriter(new FileWriter(f, true));
             bw.write(contenuto); //Riempie stream
             bw.flush(); //Scrive sul file
-            System.out.println("Sto scrivendo:" + contenuto);
             bw.close();
         } catch (IOException e ) {
             throw new RuntimeException(e);
