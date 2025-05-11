@@ -1,6 +1,7 @@
 package main;
 
 import java.io.File;
+import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
@@ -8,7 +9,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws IOException {
         File f;
-        FileWriter fw;
+        BufferedWriter bw;
         String contenuto = "";
         Scanner sc = new Scanner(System.in);
 
@@ -23,10 +24,11 @@ public class Main {
             f.createNewFile();
         }
 
-        fw = new FileWriter(f);
+        bw = new BufferedWriter(new FileWriter(f));
 
-        fw.write(contenuto);
+        bw.write(contenuto);
+        bw.flush();
 
-        fw.close();
+        bw.close();
     }
 }
