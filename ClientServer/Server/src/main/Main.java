@@ -8,7 +8,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Main {
-    public static int port = 12345; //il numero di porta del server in cui è in ascolto
+    public static int port = 4040; //il numero di porta del server in cui è in ascolto
 
     public static void main(String[] args) throws IOException {
         ServerSocket ss;
