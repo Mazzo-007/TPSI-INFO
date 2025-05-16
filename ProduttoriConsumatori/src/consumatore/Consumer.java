@@ -15,6 +15,7 @@ public class Consumer extends Thread {
         // per 20 volte preleva il primo elemento della risorsa
         for (int i = 0; i < 20; i++) {
             try {
+                Thread.sleep(0);
                 sharedResource.getValue();
             } catch (InterruptedException e) {
                 System.out.println(Thread.currentThread().getName() + " interrotto.");
