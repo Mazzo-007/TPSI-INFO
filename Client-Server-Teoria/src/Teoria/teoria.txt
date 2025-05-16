@@ -1,0 +1,38 @@
+Applicazione client-server
+
+Il client comunica con il server e chiede informazioni per fare da interfaccia all'utente.
+Il server mette a disposizione dei servizi ai client che comunicano con il server
+
+Sul server si può avere una porzione del servizio finale e demandare al client alcune task minoritarie.
+L'applicazione client viene distribuita tra gli utenti mentre il server è centrale e condiviso tra tutti.
+
+Per pote comunicare client e server si devono conoscere.
+Il server non può prevedere quali saranno i client che si collegano, l'unica cosa certa di un'applicazione client-server è il server.
+
+Il server ha un IP statico che è conosciuto, la comunicazione inizia quando il client richiede la comunicazione.
+
+La comunicazione avviene tramite i protocolli TCP e UDP (TCP si accerta del buon fine della comunicazione mentre UDP no).
+
+Per comunicazre serve un canale (socket), conoscere l'indirizzo del server e conoscere la porta su cui ascolta l'applicazone.
+
+Una socket TCP è un collegamento che prevede uno scambio full-duplex.
+Per scrivere e leggere sulla socket è necessario creare uno Stream che permette di trattare sia scambio di testo che dioggetti.
+In generale si usa la classe InputStream, può leggere sia un byte a volte che un'array di byte.
+
+La classe socket mette a disposizione un metodo che ritorna un input stream.
+Se ci interessa solo lo scambipo di file si può usare un InputStreamReader.
+
+Un codice esempio può essere:
+
+Socket s = new Socket (ipServer, portServer);
+InputStream is = s.getInputStream();
+InputStreamReader isr = new InputStreamReader(is);
+BufferedReader br = new BufferedReader(isr);
+
+Per inviare un messagio al server si usa sempre la socket con il metodo getOutputStream().
+
+Un codice esempio può essere:
+
+Socket s = new Socket (ipServer, portServer);
+OutputStream os = s.getOutputStream();
+private PrintWriter out = new PrintWriter(os, true); //il true attiva la scrittura sincrona
