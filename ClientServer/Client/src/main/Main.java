@@ -7,8 +7,8 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 public class Main {
-    public static String host = "localhost"; //l'indirizzo IP del server
-    public static int port = 12345; //il numero di porta del server in cui è in ascolto il programma
+    public static String host = "192.168.1.125"; //l'indirizzo IP del server
+    public static int port = 1234; //il numero di porta del server in cui è in ascolto il programma
 
     public static void main(String[] args) throws IOException {
         String sms, risposta; //contiene il messaggio da inviare al server e la sua risposta
@@ -23,7 +23,7 @@ public class Main {
         //stream per leggere da input
         BufferedReader tastiera = new BufferedReader(new InputStreamReader(System.in));
 
-        System.out.println("Scrivi un messaggio da inviare al server ('exit termino la connesione):");
+        System.out.println("Scrivi un messaggio da inviare al server ('exit' termino la connesione):");
         while (!(sms = tastiera.readLine()).equalsIgnoreCase("exit")) {
             //spedisco il messaggio dell'utente
             pw.println(sms);
