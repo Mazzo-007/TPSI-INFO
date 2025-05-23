@@ -22,4 +22,9 @@ public class GestoreRoom {
         stanze.remove(ID);
         return true;
     }
+
+    public Room getRoom (String ID) {
+        if (!stanze.containsKey(ID)) return null;
+        return stanze.get(ID);
+    }
 }

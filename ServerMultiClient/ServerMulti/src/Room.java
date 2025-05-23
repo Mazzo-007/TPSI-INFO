@@ -9,9 +9,15 @@ import java.util.Vector;
 
 public class Room{
     private Vector<Client> lista;
+    private String ID;
 
-    public Room() {
+    public Room(String ID) {
+        this.ID = ID;
         lista = new Vector<>();
+    }
+
+    public String getID() {
+        return ID;
     }
 
     public void addClient(Socket s) throws IOException, InterruptedException {
