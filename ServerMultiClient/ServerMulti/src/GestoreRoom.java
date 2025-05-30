@@ -5,6 +5,7 @@ public class GestoreRoom {
 
     public GestoreRoom () {
         stanze = new HashMap<>();
+        stanze.put("INFO", new Room("INFO",this) );
     }
 
     public boolean addRoom (String ID, Room room) {
