@@ -1,3 +1,8 @@
+package main;
+
+import lettura.Lettura;
+import scrittura.Scrittura;
+
 import java.io.IOException;
 import java.net.Socket;
 
