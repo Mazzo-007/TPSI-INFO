@@ -1,0 +1,4 @@
+Stampa alternata tra due thread
+
+Due thread devono stampare alternatamente i numeri da 1 a 20, uno stampa i dispari, l'altro i pari.
+Usare due semafori per garantire l'alternanza corretta.

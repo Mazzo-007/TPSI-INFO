@@ -1,0 +1,6 @@
+Buffer circolare con produttore e consumatore
+
+Implementare un buffer circolare di dimensione fissa con un produttore e un consumatore.
+Il produttore inserisce numeri nel buffer, il consumatore li rimuove.
+Usare tre semafori: uno per il conteggio degli spazi pieni, uno per quelli vuoti, e uno per l'accesso in
+mutua esclusione al buffer.
