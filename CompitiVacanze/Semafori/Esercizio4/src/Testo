@@ -1,0 +1,5 @@
+Barriera di sincronizzazione
+
+5 thread devono arrivare a un punto comune e poi proseguire insieme solo quando tutti sono arrivati.
+Implementare una barriera semplice con semafori.
+(Suggerimento: un semaforo per il conteggio e uno per la liberazione.)

@@ -1,0 +1,5 @@
+Controllo accesso risorse multiple
+
+Simulare una sala con 3 postazioni di lavoro accessibili da 10 thread.
+Ogni thread può accedere solo quando almeno una postazione è libera.
+Usare un semaforo per controllare l’accesso e garantire che al massimo thread lavorino contemporaneamente.
