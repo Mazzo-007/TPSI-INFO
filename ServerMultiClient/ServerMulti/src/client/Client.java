@@ -1,3 +1,7 @@
+package client;
+
+import room.Room;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -35,6 +39,9 @@ public class Client extends Thread{
                 if(sms.equalsIgnoreCase("abbandona")){
                     stanza.abbandona(this);
                     sms = "Il client "+ s.getInetAddress() +" lascia la comunicazione";
+                    in.close();
+                    out.close();
+                    s.close();
                 }
                 stanza.trasmetti(sms, this);
             }
