@@ -55,24 +55,17 @@
     <div class="container">
     <?php 
         $_USER = array(
-            array('username' => 'admin', 'password' => 'admin'),
-            array('username' => 'Luca', 'password' => 'Mazzoni'),
-            array('username' => 'Niccolò', 'password' => 'Veronesi')
+            'admin' => 'admin',
+            'Luca' => 'Mazzoni',
+            'Niccolò' => 'Veronesi'
         );
 
-        $login_failed = true;
-
-        foreach ($_USER as $value) {
-            if ($_GET['username'] === $value['username'] && $_GET['password'] === $value['password']) {
-                echo "<h1>Login effettuato con successo</h1>";
-                echo "<h3>Benvenuto " . $value['username'] . "</h3>";
-                $login_failed = false;
-                break;
-            }
-        }
-
-        if ($login_failed) {
-            echo "<h1>Login fallito</h1>";
+        if ($_USER[$_GET['username']] === $_GET['password']) {
+            echo "<h1>Benvenuto " . $_GET['username'] . "</h1>";
+            echo "<h3>Accesso effettuato con successo</h3>";
+        } else {
+            echo "<h1>Accesso negato</h1>";
+            echo "<h3>Username o password errati</h3>";
         }
     ?>
 </body>
