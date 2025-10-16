@@ -60,7 +60,7 @@
             'Niccolò' => 'Veronesi'
         );
 
-        if ($_USER[$_GET['username']] === $_GET['password']) {
+        if (isset($_USER[$_GET['username']]) && isset($_GET['password']) && $_USER[$_GET['username']] === $_GET['password']) {
             echo "<h1>Benvenuto " . $_GET['username'] . "</h1>";
             echo "<h3>Accesso effettuato con successo</h3>";
         } else {
