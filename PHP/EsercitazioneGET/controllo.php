@@ -143,7 +143,7 @@
 
         if (isset($_GET['username']) && isset($_GET['password']) && empty($_GET['username']) == false && empty($_GET['password']) == false) {
             foreach ($dati as $utente) {
-                if ($utente[$_GET['username']] === $_GET['password']) {
+                if ($utente['login'] === $_GET['username'] && $utente['password'] === $_GET['password']) {
                     echo "<h1>Benvenuto " . $utente['nome'] . "</h1>";
                     echo "<h3>Accesso effettuato con successo</h3>";
                     $controllo = false;
@@ -159,17 +159,19 @@
             exit;
         }
     ?>
-    </div>
-    <div class="container">
-        <h1> Dati </h1>
-        <h4><?php echo(isset($utente) ? $utente['nome'] : ''); ?> i tuoi dati sono i seguenti: </h4>
-        <?php
+    </div> 
+    <?php
+        if (!$controllo) {
+            echo("<div class=container>");
+            echo("<h1> Dati </h1>");
+            echo("<h4>" . (isset($utente) ? $utente['nome'] : '') . " i tuoi dati sono i seguenti: </h4>");
             echo "<p>";
             foreach ($utente as $k => $v) {
                 echo "$k: $v<br>";
             }
             echo "</p>";
-        ?>
-    </div>
+            echo("</div>");
+        }
+    ?>
 </body>
 </html>
