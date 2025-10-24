@@ -134,42 +134,43 @@
 </head>
 <body>
     <?php
-    $nomeFile ="utente.json";
-    if(!file_exists($nomeFile)){
-    die("<div><h1>ERRORE DEL SISTEMA</h1></div>");
-    }else{
-        if(empty($_GET["nome"]) || empty($_GET["cognome"]) || empty($_GET["email"]) || empty($_GET["login"]) || empty($_GET["password"])){
-            die("<div><h1>Dati mancanti</h1></div>");
-        }
-      
-        //leggere il file
-        $json = file_get_contents($nomeFile);
-        
-        //trasformare in array associativo
-        $dati = json_decode($json, true);
-        
-        foreach($dati as $utente){
-            if($utente["login"] === $_GET["login"]){
-                die("<div><h1>Utente già esistente</h1></div>");
+        $errore = "";
+        $nomeFile ="utente.json";
+        if(!file_exists($nomeFile)){
+        die("<div><h1>ERRORE DEL SISTEMA</h1></div>");
+        }else{
+            if(empty($_GET["nome"]) || empty($_GET["cognome"]) || empty($_GET["email"]) || empty($_GET["login"]) || empty($_GET["password"])){
+                $errore = "<div><h1>Dati mancanti</h1></div>";
+            } else {
+            //leggere il file
+            $json = file_get_contents($nomeFile);
+
+            //trasformare in array associativo
+            $dati = json_decode($json, true);
+
+            foreach($dati as $utente){
+                if($utente["login"] === $_GET["login"]){
+                    $errore = "<div><h1>Utente già esistente</h1></div>";
+                }
             }
-        }
 
-        $utente = [
-            "nome"=>$_GET["nome"],
-            "cognome"=>$_GET["cognome"],
-            "email"=>$_GET["email"],
-            "login"=>$_GET["login"],
-            "password"=>$_GET["password"]
-        ];
+            if($errore === ""){
+            $utente = [
+                "nome"=>$_GET["nome"],
+                "cognome"=>$_GET["cognome"],
+                "email"=>$_GET["email"],
+                "login"=>$_GET["login"],
+                "password"=>$_GET["password"]
+            ];
 
-        //aggiungere l'utente
-        $dati[] = $utente;
+            //aggiungere l'utente
+            $dati[] = $utente;
 
-        //trasformo l'array associativi in string json
-        $json = json_encode($dati, JSON_PRETTY_PRINT);
+            //trasformo l'array associativi in string json
+            $json = json_encode($dati, JSON_PRETTY_PRINT);
 
-        //salvo la stringa sul file
-        file_put_contents($nomeFile,$json);
+            //salvo la stringa sul file
+            file_put_contents($nomeFile,$json);
     ?>    
         <h1>Utente salvato con successo</h1>
         
@@ -179,21 +180,25 @@
         <h1> Dati </h1>
 
         <?php
-        echo("<h4>" . (isset($utente) ? $utente['nome'] : '') . " i tuoi dati sono i seguenti: </h4>");
-        echo "<p>";
-        foreach ($utente as $k => $v) {
-            echo "$k: $v<br>";
-        }
-        ?>
+            echo("<h4>" . (isset($utente) ? $utente['nome'] : '') . " i tuoi dati sono i seguenti: </h4>");
+            echo "<p>";
+            foreach ($utente as $k => $v) {
+                echo "$k: $v<br>";
+            }
+            ?>
 
-        </p>
-        </div>
-
-        <div class="container">
-            <label><a href="index.html">Clicca qui</a> per effettuare il login.</label>
-        </div>
-    <?php
+            </p>
+            </div>
+        <?php
+            }
+            }
     }
-?>
+    if($errore !== ""){
+        echo "<h1>$errore</h1>";
+    }
+    ?>
+    <div class="container">
+        <label><a href="index.html">Clicca qui</a> per effettuare il login.</label>
+    </div>
 </body>
 </html>
