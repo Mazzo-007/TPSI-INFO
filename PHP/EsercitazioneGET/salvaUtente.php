@@ -26,6 +26,7 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
+            flex-direction: column;
             justify-content: center;
             padding: 2rem;
             font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -78,6 +79,12 @@
             font-weight: 600;
         }
 
+        hr {
+            width: 60%;
+            border: 1px solid #b2bec3;
+            margin-bottom: 30px;
+        }
+
         /* Status helpers (apply to container class if desired: .container.success / .container.error) */
         .container.success h1 { color: var(--success); }
         .container.error h1 { color: var(--danger); }
@@ -125,53 +132,68 @@
         }
     </style>
 </head>
-<body style="flex-direction: column; gap: 1rem;">
-    <div class="container">
-    <?php 
-        $controllo = true;
-
-        $nomeFile = "utente.json";
-        //1. verifico se il file esiste
-        if (!file_exists($nomeFile)) {
-            die ("File non esistente");
-        } else {
-            $contenuto = file_get_contents($nomeFile);
-            //var_dump --> stampa il tipo di variabile e il suo contenuto
-            //var_dump($contenuto);
-            $dati = json_decode($contenuto, true); //con true converto in array associativo
-        }
-
-        if (isset($_GET['username']) && isset($_GET['password']) && empty($_GET['username']) == false && empty($_GET['password']) == false) {
-            foreach ($dati as $utente) {
-                if ($utente['login'] === $_GET['username'] && $utente['password'] === $_GET['password']) {
-                    echo "<h1>Benvenuto " . $utente['nome'] . "</h1>";
-                    echo "<h3>Accesso effettuato con successo</h3>";
-                    $controllo = false;
-                    break;
-                }
-            }
-            if ($controllo) {
-                echo "<h1>Accesso negato</h1>";
-                echo "<h3>Username o password errati</h3>";
-            }
-        } else {
-            echo "<script>window.location.href = 'http://mazzoni.luca.tave.osdb.it/PHP/EsercitazioneGET/index.html';</script>";
-            die();
-        }
-    ?>
-    </div> 
+<body>
     <?php
-        if (!$controllo) {
-            echo("<div class=container>");
-            echo("<h1> Dati </h1>");
-            echo("<h4>" . (isset($utente) ? $utente['nome'] : '') . " i tuoi dati sono i seguenti: </h4>");
-            echo "<p>";
-            foreach ($utente as $k => $v) {
-                echo "$k: $v<br>";
-            }
-            echo "</p>";
-            echo("</div>");
+    $nomeFile ="utente.json";
+    if(!file_exists($nomeFile)){
+    die("<div><h1>ERRORE DEL SISTEMA</h1></div>");
+    }else{
+        if(empty($_GET["nome"]) || empty($_GET["cognome"]) || empty($_GET["email"]) || empty($_GET["login"]) || empty($_GET["password"])){
+            die("<div><h1>Dati mancanti</h1></div>");
         }
-    ?>
+      
+        //leggere il file
+        $json = file_get_contents($nomeFile);
+        
+        //trasformare in array associativo
+        $dati = json_decode($json, true);
+        
+        foreach($dati as $utente){
+            if($utente["login"] === $_GET["login"]){
+                die("<div><h1>Utente già esistente</h1></div>");
+            }
+        }
+
+        $utente = [
+            "nome"=>$_GET["nome"],
+            "cognome"=>$_GET["cognome"],
+            "email"=>$_GET["email"],
+            "login"=>$_GET["login"],
+            "password"=>$_GET["password"]
+        ];
+
+        //aggiungere l'utente
+        $dati[] = $utente;
+
+        //trasformo l'array associativi in string json
+        $json = json_encode($dati, JSON_PRETTY_PRINT);
+
+        //salvo la stringa sul file
+        file_put_contents($nomeFile,$json);
+    ?>    
+        <h1>Utente salvato con successo</h1>
+        
+        <hr>
+
+        <div class="container">
+        <h1> Dati </h1>
+
+        <?php
+        echo("<h4>" . (isset($utente) ? $utente['nome'] : '') . " i tuoi dati sono i seguenti: </h4>");
+        echo "<p>";
+        foreach ($utente as $k => $v) {
+            echo "$k: $v<br>";
+        }
+        ?>
+
+        </p>
+        </div>
+
+        <div class="container">
+            <label><a href="index.html">Clicca qui</a> per effettuare il login.</label>
+        </div>
+    <?php
+    }
+?>
 </body>
 </html>
