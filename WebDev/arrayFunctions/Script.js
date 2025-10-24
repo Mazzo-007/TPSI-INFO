@@ -20,6 +20,19 @@ btn.addEventListener("click", getInputAndShow);
 
 //Prendere numero da utente -> n+5
 function getInputAndShow() {
-    let v = (Number)(inputObjet.value); //prende il valore dall'input
+    let tmp = inputObjet.value; //prende il valore dall'input come stringa
+    if (tmp === "") {
+        return; //esce dalla funzione se è vuoto
+    }
+
+    let v = (Number)(tmp); //prende il valore dall'input
+
+    //Guardia se è un numero
+    if(isNaN(v)) {
+        return; //esce dalla funzione se non è un numero
+    }
+
+    console.log(typeof(v));
+
     output.textContent = v + ": " + (v + 5); //concatena la stringa con il numero aumentato di 5
 }
