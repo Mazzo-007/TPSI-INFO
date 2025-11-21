@@ -1,0 +1,46 @@
+In una web app si comunica tramite protocollo HTTP.
+Il protocollo HTTP è stateless, non ha memoria, vi sono varie tecniche per ovviare a questo problema, 
+in primo luogo si possono utilizzare dei campi nascosti ma non sono efficaci.
+
+Per ovviare a ciò si possono utilizzare i coockie che sono un file di testo lato client che definiscono 
+informazioni salvate con coppia chiave valore.
+
+In php per utilizzare i coockie si utilizza la parola riservata setCoockie con i parametri nome, 
+valore, time, path, dominio, secure, HTTPonly. 
+Il nome rappresenta la chiave mentre il valore il valore stesso. 
+Il tempo esprime la validità del coockie e si setta con la funzione time() + delta t. path indica la parte di 
+route per cui è valido il coockie, dominio indica per quale dominio o sottodominio è valido, secure indica se è 
+possibile manipolare il coockie da js e infine HTTPonly indica se il coockie può essere trasmesso solo in HTTPS 
+o anche HTTP. 
+Il coockie viene creato dal server e spedito al client, risiede quindi nel browser, il salvataggio
+avviene in una cartella temporale del sistema operativo. Esistono vari tipi di coockie in base all'esigenza da 
+svolgere.
+
+Nei coockie si possono salvare tutte la informazioni tranne quelle sensibili per poter salvare queste ultime 
+si utilizzano le sessioni.
+
+Le sessioni servono per salvare informazioni su web server o database.
+
+Una sessioni è identificata da un ID che al momento della generazione della sessione è passato al client, questa
+informazione salvata in un coockie verrà chiesta dal web server ogni volta che si accede e se esiste una 
+sessione con quell'ID allora si potrà recuperare il tutto.
+
+I coockie che si utilizzano per il salvataggio dal codice sessione si chiamano coockie tecnici.
+
+Anche la sessione ha un tempo di vita espresso nel php.ini che è un file di configurazione del web server. 
+La durata di default è solitamente fino a che il browser è in vita. Si potrà pero poi modificare anche un singolo 
+tempo di sessione, tutti i dati in sessione possono essere modificati e la sessione stessa può essere eliminata.
+
+In php si fa lo start della sessione: session_start(), quando si avvia una sessione si hanno due stati, 1 la 
+sessione non è mai stata avviata, si crea quindi per la prima volta, stato 2 la sessione è già stata creata ed è 
+valida quindi si recuperano i dati della sessione.
+
+Stato 1 -> crea la sessione (crea un codice univoco), invia poi un coockie di sessione contenente l'ID e il valore, 
+il valore è il codice che ha creato.
+
+Stato 2 -> chiede il codice e se è corretto recupera i dati sessione associati a quel codice.
+
+Al momento del session_start() il server chiede al browser il coockie di sessione e se questo c'è procede con lo 
+stato 2 altrimenti sato 1.
+
+Tutte le informazioni della sessione risiedono poi nella variabile superglobale $_SESSION.
