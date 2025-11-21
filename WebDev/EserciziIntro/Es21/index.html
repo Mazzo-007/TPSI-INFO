@@ -1,0 +1,27 @@
+<!--
+Realizza un’applicazione che genera automaticamente un bottone nel DOM ogni secondo. 
+Il bottone deve avere come testo e valore un numero progressivo (1, 2, 3,…). 
+
+Ogni bottone deve essere inserito in un div dedicato. Quando l’utente clicca su un bottone:
+    - Il valore del bottone viene aggiunto a una somma totale;
+    - La somma deve essere mostrata dinamicamente nel DOM;
+    - Dopo 30 bottoni generati, ferma automaticamente la generazione. Quando un bottone viene cliccato, eliminalo dal DOM (se append() aggiunge remove() rimuove). 
+
+Infine, crea un pulsante reset che:
+    - Azzera la somma;
+    - Elimina ogni bottone (devo manipolare il contenuto html e azzerarlo);
+    - Riparte la generazione dal valore 1.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div id="btnContainer"></div>
+</body>
+</html>
