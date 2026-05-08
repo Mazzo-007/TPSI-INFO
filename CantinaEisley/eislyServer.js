@@ -2,7 +2,7 @@ const express = require("express"); //import
 
 const PORT = 3000;
 
-//1) ccreare server
+//1) creare server
 const server = express()
 
 server.use(express.json())
@@ -40,7 +40,7 @@ const bevande = [
     }
 ];
 
-const cliente = [
+const clienti = [
     {
         id : 1,
         nome : "Han Solo",
@@ -135,7 +135,19 @@ server.use("/bevande", (req, res, next) => {
 })
 
 server.get("/clienti", (req, res) => {
-    res.status(200).json({msg: "test"})
+    res.status(200).json(clienti)
+})
+
+server.get("/clienti/:id", (req, res) => {
+    let idCliente = parseInt(req.params.id);
+    //TODO check se id è davvero un numero intero
+    //TODO ricerca se ho davvero quel cliente
+    for (let cliente of clienti) {
+        if (cliente.id === idCliente) {
+            return res.status(200).json(cliente);
+        }
+    }
+    return res.status(404).json({"msg":"Cliente non trovato"})
 })
 
 server.get("/clienti/:id/ordini", (req, res) => {
@@ -158,6 +170,15 @@ server.get("/bevande", (req, res) => {
         }
         res.status(200).json(temp)
     }
+})
+
+server.post("/clienti", (req, res) => {
+    let name = req.body.nome;
+
+    if(!name) return res.status(400).json({"msg":"errore client"});
+    clienti.push({
+        id : clienti.length+1,
+        nome : name})
 })
 
 //listen
